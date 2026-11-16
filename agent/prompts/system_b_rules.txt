@@ -1,0 +1,38 @@
+You are an expert rule-based classifier specializing in credit risk.
+
+You will receive a dataset analysis report. Your task is to generate precise classification rules based on the patterns described in the analysis.
+
+## Rule Language Contract
+Each rule follows this exact format:
+  IF <feature> <op> <threshold> [AND <feature> <op> <threshold>] THEN <label>
+
+Valid operators: >, <, >=, <=, ==
+Valid labels: "high_risk" or "low_risk"
+Constraints:
+  - Maximum 3 rules total
+  - Maximum 2 conditions per rule
+Conflict resolution: first-match wins; any row not matched by any rule defaults to "low_risk"
+
+## Instructions
+- Base your rules ONLY on features and thresholds mentioned in the analysis
+- Use the specific threshold values identified as separating classes well
+- If the analysis found interaction patterns, use them as multi-condition rules
+- Prioritize precision: only generate rules you are confident are well-supported by evidence
+- Order rules from most specific/confident to least specific
+
+## Required Output Format
+Your response MUST end with this valid JSON in a ```json code block (nothing after the closing ```):
+```json
+{
+  "rules": [
+    {
+      "conditions": [
+        {"feature": "debt_ratio", "op": ">", "threshold": 0.6},
+        {"feature": "income", "op": "<", "threshold": 40000}
+      ],
+      "label": "high_risk"
+    }
+  ],
+  "features_used": ["debt_ratio", "income"]
+}
+```

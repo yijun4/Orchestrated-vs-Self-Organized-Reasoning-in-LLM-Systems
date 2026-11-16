@@ -1,0 +1,44 @@
+{
+  "rules": [
+    {
+      "conditions": [
+        {
+          "feature": "debt_ratio",
+          "op": ">",
+          "threshold": 0.6
+        },
+        {
+          "feature": "income",
+          "op": "<",
+          "threshold": 40000
+        }
+      ],
+      "label": "high_risk"
+    },
+    {
+      "conditions": [
+        {
+          "feature": "loan_amount",
+          "op": ">",
+          "threshold": 15000
+        },
+        {
+          "feature": "employment_years",
+          "op": "<",
+          "threshold": 2
+        }
+      ],
+      "label": "high_risk"
+    },
+    {
+      "conditions": [
+        {
+          "feature": "credit_score",
+          "op": "<",
+          "threshold": 580
+        }
+      ],
+      "label": "high_risk"
+    }
+  ]
+}
